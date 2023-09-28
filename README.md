@@ -1,8 +1,9 @@
 <img align="left" src="assets/fern.png" height="150px">
 <h1>AniList Frieren CSS</h1>
-<i>Beyond Journey's End.</i>
 
-<br><br>
+```ocaml
+BEYOND JOURNEY'S END
+```
 
 <hr>
 
@@ -11,6 +12,8 @@
 Just a theme for a couple people that are a little too hyped about an anime.
 
 All the code is inside the `src` folder.
+
+<i>Don't know why I made this? Well, you can put custom CSS on your profile!<br>Check [this page](AUTOMAIL.md) out!</i>
 
 ## Inspirations
 
