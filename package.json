@@ -1,0 +1,18 @@
+{
+  "name": "css",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "sass": "^1.67.0"
+  },
+  "scripts": {
+    "compile": "sass --no-source-map --style=compressed --load-path=src --update src:dist",
+    "bio": "bun run index.ts"
+  }
+}

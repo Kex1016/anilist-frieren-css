@@ -1,0 +1,225 @@
+@import "../misc/Colors.scss";
+@import "../misc/Mixins.scss";
+
+.markdown *[data-cake="true"] {
+  &[data-class="container"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background-image: linear-gradient(to top, $c1, $c2);
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      filter: brightness(0) invert(1);
+      z-index: 1;
+    }
+
+    &::before {
+      background-image: url(https://i.imgur.com/HCrz1ZT.png);
+      background-position: center top;
+    }
+
+    &::after {
+      background-image: url(https://i.imgur.com/rEqFnoA.png);
+      background-position: center bottom;
+    }
+
+    & [data-cake="true"] {
+      z-index: 10;
+    }
+
+    [data-class="character-image"] {
+      aspect-ratio: 3/3.25;
+      width: 500px;
+      height: 100%;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: scale(1.2);
+
+      &[data-character="frieren"] {
+        background-image: url(https://i.imgur.com/CHVEc5n.png);
+      }
+
+      &[data-character="fern"] {
+        background-image: url(https://i.imgur.com/z0VaRkR.png);
+      }
+
+      &[data-character="stark"] {
+        background-image: url(https://i.imgur.com/UpLXB8u.png);
+      }
+    }
+
+    [data-class="deco"] {
+      position: absolute;
+      top: 80px;
+      left: calc(50% - 165px);
+      width: 200px;
+      height: 200px;
+      z-index: 1;
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-image: url(https://i.imgur.com/HNXBSxM.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+    }
+
+    [data-content] {
+      &::after {
+        content: attr(data-content);
+        display: inline;
+      }
+    }
+
+    [data-class="bio"] {
+      @include font-cinzel;
+      color: white;
+      width: 100%;
+      max-width: 500px;
+      margin-right: 150px;
+      margin-left: 50px;
+
+      [data-class="header"] {
+        @include font-size(2.5em);
+        @include font-weight(700);
+        position: relative;
+        margin-bottom: min(2.5vw, 30px);
+        padding-bottom: min(2.5vw, 30px);
+
+        [data-class="ch-name"] {
+          @include font-zen;
+          @include font-size(0.5em);
+          @include font-weight(300);
+          margin-top: -10px;
+
+          &::before {
+            content: "ch.: ";
+          }
+        }
+
+        &::before {
+          content: "";
+          background-color: $cGold;
+          width: 100%;
+          height: 1px;
+          position: absolute;
+          bottom: 0;
+        }
+
+        &::after {
+          content: "";
+          background-color: $cGold;
+          display: block;
+          width: 8px;
+          height: 8px;
+          transform: rotate(45deg);
+          margin: auto;
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: -4px;
+        }
+      }
+
+      [data-class="body"] {
+        font-size: 1.25em;
+        line-height: 1.25em;
+        // Line break with auto ellipsis
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-line-clamp: 15;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    [data-class="portrait"] {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      background-color: $c2;
+      position: absolute;
+      top: 5px;
+      right: calc(50% - 500px);
+
+      [data-class^="portrait-image-"] {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0;
+        border-radius: 50%;
+      }
+
+      &::after {
+        content: "";
+        width: 120%;
+        height: 120%;
+        background-image: url(https://frieren-anime.jp/wp-content/themes/frieren_2023/assets/img/common/deco/deco_face.svg);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: calc(-20% / 2);
+        left: calc(-20% / 2);
+        z-index: 10;
+      }
+
+      &[data-character="frieren"] {
+        @include portrait-keyframe(
+          "frieren",
+          "https://i.imgur.com/lOAv1hu.jpg",
+          "https://i.imgur.com/3cpkAdC.jpg",
+          "https://i.imgur.com/LImT53g.jpg",
+          "https://i.imgur.com/ccFheLw.jpg"
+        );
+        @include portrait-animation("frieren");
+      }
+      &[data-character="fern"] {
+        @include portrait-keyframe(
+          "fern",
+          "https://i.imgur.com/Gpo6xQY.jpg",
+          "https://i.imgur.com/ggPHnZL.jpg",
+          "https://i.imgur.com/ahkBJL9.jpg",
+          "https://i.imgur.com/kcQvPDL.jpg"
+        );
+        @include portrait-animation("fern");
+      }
+      &[data-character="stark"] {
+        @include portrait-keyframe(
+          "stark",
+          "https://i.imgur.com/4PgZjOe.jpg",
+          "https://i.imgur.com/fsDx8E5.jpg",
+          "https://i.imgur.com/riZNx04.jpg",
+          "https://i.imgur.com/4PgZjOe.jpg"
+        );
+        @include portrait-animation("stark");
+      }
+    }
+  }
+}

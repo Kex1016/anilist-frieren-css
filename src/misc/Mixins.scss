@@ -1,0 +1,157 @@
+@import "./Colors.scss";
+
+@mixin font-cinzel {
+  font-family: "Cinzel", serif;
+}
+
+@mixin font-zen {
+  font-family: "Zen Old Mincho", serif;
+}
+
+@mixin font-mixed {
+  font-family: "Cinzel", "Zen Old Mincho", serif;
+}
+
+@mixin font-weight($weight) {
+  font-weight: $weight;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+}
+
+@mixin font-underline {
+  text-decoration: underline;
+}
+
+@mixin font-strike {
+  text-decoration: line-through;
+}
+
+@mixin portrait-keyframe($name, $img1, $img2, $img3, $img4) {
+  [data-class="portrait-image-1"] {
+    background-image: url($img1);
+  }
+  [data-class="portrait-image-2"] {
+    background-image: url($img2);
+  }
+  [data-class="portrait-image-3"] {
+    background-image: url($img3);
+  }
+  [data-class="portrait-image-4"] {
+    background-image: url($img4);
+  }
+
+  @keyframes #{$name}-one-to-two {
+    0% {
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 1;
+    }
+    35% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes #{$name}-two-to-three {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes #{$name}-three-to-four {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    65% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes #{$name}-four {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 0;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin portrait-animation($name) {
+  [data-class="portrait-image-1"] {
+    animation-name: #{$name}-one-to-two;
+  }
+  [data-class="portrait-image-2"] {
+    animation-name: #{$name}-two-to-three;
+  }
+  [data-class="portrait-image-3"] {
+    animation-name: #{$name}-three-to-four;
+  }
+  [data-class="portrait-image-4"] {
+    animation-name: #{$name}-four;
+  }
+  [data-class^="portrait-image-"] {
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+}

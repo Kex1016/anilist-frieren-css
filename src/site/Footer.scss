@@ -1,0 +1,60 @@
+#app {
+  & > .wrap {
+    margin: unset;
+    background: white;
+    position: relative;
+    max-height: 100vh;
+    height: 100vh;
+
+    .footer {
+      background-color: unset;
+      background-image: url(https://i.imgur.com/Iz129p1.png);
+      background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: unset;
+      max-height: unset;
+      height: 100%;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        aspect-ratio: 2399/176;
+        width: 100%;
+        border-radius: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index: 10;
+        pointer-events: none;
+        filter: brightness(0) invert(1);
+        background-image: url(https://i.imgur.com/rEqFnoA.png);
+        background-position: center top;
+        top: 0;
+        transform: translateY(-100%);
+      }
+
+      .theme-selector {
+        display: none;
+      }
+
+      .links {
+        margin-left: unset;
+        margin: 100px auto;
+
+        &::after {
+          @include font-cinzel;
+          @include font-weight(700);
+          @include font-size(2rem);
+          display: inline;
+          content: "・ A FRIEREN THEME BY 「@AIWAZ」 ／ 「@ANZU」 ／ 「@CAKES」 ・";
+          color: $c1;
+        }
+
+        section {
+          display: none;
+        }
+      }
+    }
+  }
+}

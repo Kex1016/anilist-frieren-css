@@ -1,0 +1,347 @@
+@use "sass:color";
+@import "../misc/Colors.scss";
+@import "../misc/Mixins.scss";
+
+// Mixin for nav link
+@mixin nav-link {
+  & > .link {
+    @include font-cinzel;
+    @include font-weight(700);
+    @include font-size(4rem);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 10;
+    transition: color 0.3s ease;
+
+    &::after {
+      @include font-size(1.5rem);
+      color: $cGold;
+      transition: color 0.3s ease;
+    }
+
+    &::before {
+      content: "";
+      background-position: bottom;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 10%,
+        rgba(255, 255, 255, 1) 10%,
+        rgba(255, 255, 255, 1) 90%,
+        rgba(255, 255, 255, 0) 90%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: -0.06em;
+      left: 0;
+      z-index: 0;
+      transform: scale(0, 1);
+      transform-origin: right top;
+      transition: transform 0.3s ease;
+      // blend the gradient with the background
+      mix-blend-mode: multiply;
+    }
+
+    &:nth-of-type(1)::after {
+      content: "Don't touch global.";
+    }
+    &:nth-of-type(2)::after {
+      content: "Trust me, you don't want to go yet.";
+    }
+    &:nth-of-type(3)::after {
+      content: "I bet you have Boku no Pico on there.";
+    }
+    &:nth-of-type(4)::after {
+      content: "Read Yagate Kimi ni Naru!";
+    }
+    &:nth-of-type(5)::after {
+      content: "Find a non-AWC thread challenge.";
+    }
+
+    &:hover {
+      color: $c2;
+      filter: none;
+
+      &::after {
+        color: $c2;
+      }
+
+      &::before {
+        transform-origin: left top;
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+
+#nav {
+  width: auto;
+  height: auto !important;
+  top: 6px !important;
+  bottom: calc(100vh - 100px) !important;
+  left: 100vw !important;
+  right: 0;
+  padding: 10px 5px;
+  background-color: unset;
+  background-image: linear-gradient(
+    to top,
+    rgba($color: $c1, $alpha: 0.75),
+    rgba($color: $c2, $alpha: 0.75)
+  );
+  transition: bottom 0.3s cubic-bezier(0.86, 0, 0.07, 1),
+    left 0.3s cubic-bezier(0.86, 0, 0.07, 1) !important;
+  border-radius: 12px 0 0 12px;
+  backdrop-filter: blur(5px);
+
+  &::after {
+    content: "";
+    position: fixed;
+    top: 6px;
+    right: 0;
+    width: 75px;
+    height: 82px;
+    backdrop-filter: blur(5px);
+    background-image: url(https://i.imgur.com/CMZy0aO.png),
+      linear-gradient(
+        to top,
+        rgba($color: $c1, $alpha: 0.75),
+        rgba($color: $c2, $alpha: 0.75)
+      );
+    background-size: 80%, 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1) 0.15s !important;
+    border-radius: 12px 0 0 12px;
+  }
+
+  &:hover {
+    left: calc(100vw - 1125px) !important;
+
+    &::after {
+      right: -100px;
+    }
+  }
+
+  .wrap {
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+    justify-content: space-between;
+
+    .logo {
+      width: auto;
+      height: auto;
+      transform: translateY(-3px);
+
+      img {
+        width: 75%;
+        height: auto;
+        content: url(https://i.imgur.com/IkgILpf.png);
+      }
+    }
+    .links {
+      width: auto;
+
+      .link {
+        @include font-cinzel;
+        @include font-weight(700);
+        @include font-size(2rem);
+        color: white;
+        // disable word wrap, ellipsis, and overflow
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover {
+          $color: adjust-color($c2, $lightness: +15%);
+          color: $color;
+          filter: drop-shadow(0 0 0.5rem rgba($color, 0.5));
+        }
+      }
+
+      & > .browse-wrap {
+        .dropdown,
+        &::after {
+          display: none;
+        }
+      }
+    }
+    .search {
+      display: none;
+    }
+    .user {
+      margin-right: 25px;
+
+      .avatar {
+        height: 65px;
+        width: 65px;
+        border-radius: 50%;
+
+        &::after {
+          content: "";
+          background-image: url(https://frieren-anime.jp/wp-content/themes/frieren_2023/assets/img/common/deco/deco_face.svg);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 84px;
+          height: 84px;
+          position: absolute;
+          top: -10px;
+          left: -10px;
+          transition: transform 0.2s ease;
+        }
+
+        &:hover {
+          &::after {
+            transform: rotate(45deg);
+          }
+        }
+      }
+
+      .chevron {
+        display: none;
+      }
+
+      .dropdown {
+        top: 90px;
+        right: -20px;
+        border-radius: 0;
+        background-color: unset;
+        background-image: linear-gradient(
+          to top,
+          rgba($color: $c1, $alpha: 0.75),
+          rgba($color: $c2, $alpha: 0.75)
+        );
+        backdrop-filter: blur(5px);
+        box-shadow: unset !important;
+
+        .primary-links {
+          cursor: default;
+
+          .primary-link {
+            @include font-cinzel;
+            @include font-weight(700);
+            @include font-size(1.25rem);
+            color: white;
+
+            svg {
+              color: white;
+            }
+
+            &:hover {
+              $color: adjust-color($c2, $lightness: +15%);
+              color: $color;
+              filter: drop-shadow(0 0 0.5rem rgba($color, 0.5));
+
+              svg {
+                color: $color;
+              }
+            }
+          }
+        }
+
+        &::before {
+          display: none;
+        }
+
+        .footer {
+          display: none;
+        }
+      }
+
+      .user-wrap {
+        &::after {
+          height: 40px;
+          left: -100px;
+          width: 200px;
+          top: 55px;
+        }
+      }
+    }
+  }
+}
+
+#nav.transparent {
+  width: 100%;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  background-image: linear-gradient(
+    to top,
+    rgba($color: $c1, $alpha: 0.75),
+    rgba($color: $c2, $alpha: 0.75)
+  );
+  backdrop-filter: blur(5px);
+
+  &::after {
+    top: -100px;
+    transition: top 0.3s cubic-bezier(0.86, 0, 0.07, 1) !important;
+  }
+
+  .wrap {
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    .logo {
+      width: auto;
+      height: auto;
+      margin-right: 100px;
+      pointer-events: none;
+
+      img {
+        width: auto;
+        height: auto;
+        content: url(https://i.imgur.com/IkgILpf.png);
+      }
+    }
+
+    .links {
+      width: auto;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-gap: 2rem;
+      align-items: center;
+      margin-right: 100px;
+
+      @include nav-link();
+
+      & > .browse-wrap {
+        @include nav-link();
+
+        & > .link {
+          &:nth-of-type(1)::after {
+            content: "Find the perfect entry!";
+          }
+        }
+      }
+    }
+
+    .user {
+      .dropdown {
+        top: 80px;
+      }
+    }
+
+    .search {
+      display: none;
+    }
+  }
+}
+
+// hurensohn
+.hohDownload,
+.hohDismiss {
+  display: none;
+}

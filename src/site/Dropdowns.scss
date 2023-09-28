@@ -1,0 +1,63 @@
+// Most traditional dropdowns
+.el-dropdown-menu {
+  @include font-cinzel;
+  border-radius: 0;
+  background: linear-gradient(
+    to top,
+    rgba($color: $c1, $alpha: 0.75),
+    rgba($color: $c2, $alpha: 0.75)
+  ) !important;
+  backdrop-filter: blur(5px);
+
+  .el-dropdown-menu__item {
+    @include font-cinzel;
+    color: white;
+    transition: none;
+
+    &:hover {
+      color: white;
+      background-color: rgba($color: $cGold, $alpha: 0.75);
+    }
+
+    &.el-dropdown-menu__item--divided {
+      border-top: 1px solid rgba($color: white, $alpha: 0.5);
+      &::before {
+        background: none;
+      }
+    }
+
+    .icon {
+      color: white;
+      svg {
+        color: white;
+      }
+    }
+  }
+}
+
+// Activity dropdown
+.el-dropdown-menu.activity-extras-dropdown {
+  transform: translateY(25px);
+}
+
+// Labels
+// - Subscribe/unsubscribe label on activities
+.activity-entry {
+  .time {
+    .action.has-label {
+      &::before {
+        background: linear-gradient(
+          to top,
+          rgba($color: $c1, $alpha: 0.75),
+          rgba($color: $c2, $alpha: 0.75)
+        );
+        color: white;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.popper__arrow {
+  display: none !important;
+}

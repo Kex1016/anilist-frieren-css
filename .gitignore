@@ -171,6 +171,8 @@ dist
 # Any .css and .css.map files
 *.css
 *.css.map
+*.min.html
+*.min.css
 
 # Bun
 *.lockb

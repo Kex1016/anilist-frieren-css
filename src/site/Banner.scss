@@ -1,0 +1,168 @@
+@use "sass:color";
+@import "../misc/Colors.scss";
+@import "../misc/Mixins.scss";
+
+.user-page-unscoped {
+  .header-wrap {
+    max-height: 130vh;
+    height: 130vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .banner {
+      height: 100%;
+      background-image: url(https://i.imgur.com/KWeADEq.jpg) !important;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url(https://i.imgur.com/WZmidYA.png);
+        background-size: 45%;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(https://i.imgur.com/rEqFnoA.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        // Tint the image white with filter
+        filter: brightness(0) invert(1);
+      }
+
+      .banner-content {
+        position: relative;
+        bottom: -315px;
+        z-index: 10;
+        justify-content: center;
+        align-items: flex-end;
+        min-height: 2.5em;
+        padding-left: 350px;
+
+        .actions {
+          margin: 0;
+          padding: 0;
+
+          .nav-btn {
+            $bg1: adjust-color($c1, $lightness: -10%);
+            $bg2: adjust-color($c2, $lightness: -10%);
+            $text: adjust-color($c1, $lightness: +50%);
+            background-color: unset;
+            background-image: linear-gradient(to right, $bg1, $bg2) !important;
+            border: 1px solid $c1;
+            color: $text;
+            border-radius: 100px;
+            margin: 0;
+            margin-right: 50px;
+            padding: 5px 10px;
+            @include font-size(1.2rem);
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            width: 90px;
+            backdrop-filter: blur(5px);
+            margin-left: -10px;
+            display: block;
+            transform-origin: center left;
+            transform: scale(0.8);
+            opacity: 0.75;
+
+            &:hover {
+              opacity: 1;
+              background-image: linear-gradient(
+                to right,
+                $bg2,
+                $bg1
+              ) !important;
+            }
+          }
+
+          .dropdown {
+            display: none;
+          }
+        }
+
+        .follower-badge {
+          $bg1: adjust-color($c1, $lightness: -10%);
+          $bg2: adjust-color($c2, $lightness: -10%);
+          $text: adjust-color($c1, $lightness: +50%);
+          background-color: unset;
+          background-image: linear-gradient(to right, $bg1, $bg2) !important;
+          border: 1px solid $c1;
+          color: $text;
+          padding: 5px 10px;
+          border-radius: 100px;
+          margin: 0;
+          transform-origin: center left;
+          transform: scale(0.8);
+          opacity: 0.75;
+          width: 90px;
+          text-align: center;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        .name-wrapper,
+        .avatar {
+          display: none;
+        }
+      }
+    }
+    .nav-wrap {
+      background-color: transparent;
+      padding: 20px 0;
+      .nav {
+        position: relative;
+        top: 10px;
+        max-width: unset;
+
+        .link {
+          @include font-cinzel;
+          @include font-weight(300);
+          @include font-size(1.5em);
+          color: black;
+          filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.5));
+
+          &:hover {
+            $link: adjust-color($c2, $lightness: -15%);
+            color: $link;
+            filter: drop-shadow(
+              0 0 0.5rem rgba(red($link), green($link), blue($link), 0.5)
+            );
+          }
+
+          &.router-link-active {
+            $link: adjust-color($cGold, $lightness: -25%);
+            color: $link;
+            filter: drop-shadow(
+              0 0 0.5rem rgba(red($link), green($link), blue($link), 0.5)
+            );
+
+            &:hover {
+              $link: adjust-color($cGold, $lightness: -15%);
+              color: $link;
+              filter: drop-shadow(
+                0 0 0.5rem rgba(red($link), green($link), blue($link), 0.5)
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}
